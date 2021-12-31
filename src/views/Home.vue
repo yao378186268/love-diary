@@ -1,18 +1,42 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <el-button type="primary" @click="goAbout">关于我们</el-button>
+
+    <el-input v-model="str" @input="input"></el-input>
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 
 @Options({
-  components: {
-    HelloWorld,
-  },
+  components: {},
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  str = "姚成成";
+
+  input(): void {
+    console.log(this.str);
+  }
+
+  goAbout(): void {
+    console.log(this);
+
+    this.$router.push("/about");
+  }
+
+  created(): void {
+    console.log(this.str);
+  }
+}
 </script>
+
+<style lang="scss" scoped>
+.home {
+  .el-input {
+    width: 200px;
+    margin-left: 20px;
+  }
+}
+</style>

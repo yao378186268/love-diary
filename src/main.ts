@@ -3,4 +3,13 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-createApp(App).use(store).use(router).mount("#app");
+import ElementPlus from "element-plus";
+import "element-plus/dist/index.css";
+
+const app = createApp(App); // 实例化vue
+
+app.use(ElementPlus); // 使用element-plus
+app.use(store); // 使用store
+app.use(router); // 使用router
+
+app.mount("#app");
