@@ -13,15 +13,15 @@ module.exports = {
 
   chainWebpack: (config) => {
     config.plugin("html").tap((args) => {
-      args[0].title = "张文婷与姚成成的爱情故事"
+      args[0].title = "张文婷与姚成成的爱情故事";
 
-      args[0].minify = false
+      args[0].minify = false;
 
-      return args
-    })
+      return args;
+    });
   },
 
   devServer: {
     open: true,
   },
-}
+};
