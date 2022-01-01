@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <el-button type="primary" @click="back">返回</el-button>
     <el-button type="primary" @click="goAbout">关于我们</el-button>
 
     <el-input v-model="str" @input="input"></el-input>
@@ -18,6 +18,10 @@ export default class Home extends Vue {
 
   input(): void {
     console.log(this.str);
+  }
+
+  back(): void {
+    this.$router.go(-1);
   }
 
   goAbout(): void {
