@@ -24,4 +24,12 @@ module.exports = {
   devServer: {
     open: true,
   },
+
+  // 定义全局的scss变量
+  pluginOptions: {
+    "style-resources-loader": {
+      preProcessor: "scss",
+      patterns: ["./src/style/variable.scss"],
+    },
+  },
 };

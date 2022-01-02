@@ -54,13 +54,11 @@ let login = () => {
 </script>
 
 <style scoped lang="scss">
-@import "@/style/variable.scss";
 .login {
   width: 100vw;
   height: 100vh;
   background-image: linear-gradient(rgb(251, 190, 190), rgb(37, 37, 31));
-  display: grid;
-  place-content: center;
+  @include flex-center();
 
   h3 {
     text-align: center;

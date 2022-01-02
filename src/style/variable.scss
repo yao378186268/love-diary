@@ -3,3 +3,10 @@ $text-color:#333; // 文字颜色
 $font-size-base: 14px; // 文字默认大小
 $font-size-mid: $font-size-base+2;
 $font-size-large: $font-size-base+4;
+
+// flex居中对齐
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
