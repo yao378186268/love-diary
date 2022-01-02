@@ -13,7 +13,7 @@ module.exports = {
 
   chainWebpack: (config) => {
     config.plugin("html").tap((args) => {
-      args[0].title = "张文婷与姚成成的爱情故事";
+      args[0].title = "爱情日记";
 
       args[0].minify = false;
 

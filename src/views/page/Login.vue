@@ -54,6 +54,7 @@ let login = () => {
 </script>
 
 <style scoped lang="scss">
+@import "@/style/variable.scss";
 .login {
   width: 100vw;
   height: 100vh;
@@ -90,6 +91,7 @@ let login = () => {
 
       ::v-deep .el-form-item__label {
         line-height: 40px;
+        color: $text-color;
       }
     }
 
