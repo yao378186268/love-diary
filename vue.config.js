@@ -1,5 +1,19 @@
+// const AutoImport = require('unplugin-auto-import/webpack')
+// const Components = require('unplugin-vue-components/webpack')
+// const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
+
 module.exports = {
   runtimeCompiler: true,
+
+  
+  // plugins: [
+  //   AutoImport({
+  //     resolvers: [ElementPlusResolver()],
+  //   }),
+  //   Components({
+  //     resolvers: [ElementPlusResolver()],
+  //   }),
+  // ],
 
   //所有资源使用相对路径
 
@@ -13,16 +27,26 @@ module.exports = {
 
   chainWebpack: (config) => {
     config.plugin("html").tap((args) => {
-      args[0].title = "爱情日记";
+      args[0].title = "爱情日记"
 
-      args[0].minify = false;
+      args[0].minify = false
 
-      return args;
-    });
+      return args
+    })
   },
 
   devServer: {
     open: true,
+
+    proxy: {
+      '/lovediary': {
+        target: 'http://121.5.130.175:9998',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/lovediary': ''
+        }
+      }
+    }
   },
 
   // 定义全局的scss变量
@@ -32,4 +56,4 @@ module.exports = {
       patterns: ["./src/style/variable.scss"],
     },
   },
-};
+}

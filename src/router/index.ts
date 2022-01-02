@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-const Login = () => import("../views/page/Login.vue");
+const Login = () => import("../views/login/Login.vue");
 
 const Home = () => import("../views/Home.vue");
 const About = () => import("../views/About.vue");

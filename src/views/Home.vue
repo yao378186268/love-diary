@@ -8,30 +8,31 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
+import { Options, Vue } from "vue-class-component"
 
 @Options({
   components: {},
 })
 export default class Home extends Vue {
-  str = "姚成成";
+  str = "姚成成"
 
   input(): void {
-    console.log(this.str);
+    console.log(this.str)
   }
 
   back(): void {
-    this.$router.go(-1);
+    this.$router.go(-1)
+    sessionStorage.removeItem("userInfo")
   }
 
   goAbout(): void {
-    console.log(this);
+    console.log(this)
 
-    this.$router.push("/about");
+    this.$router.push("/about")
   }
 
   created(): void {
-    console.log(this.str);
+    console.log(this.str)
   }
 }
 </script>
