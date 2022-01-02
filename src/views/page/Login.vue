@@ -87,7 +87,7 @@ let login = () => {
     .el-form-item {
       margin-top: 30px;
 
-      ::v-deep .el-form-item__label {
+      :deep .el-form-item__label {
         line-height: 40px;
         color: $text-color;
       }
