@@ -5,6 +5,8 @@
 module.exports = {
   runtimeCompiler: true,
 
+  // 删除打包后的js文件夹中的.map文件
+  productionSourceMap: false,
   
   // plugins: [
   //   AutoImport({
@@ -40,7 +42,7 @@ module.exports = {
 
     proxy: {
       '/lovediary': {
-        target: 'http://121.5.130.175:9998',
+        target: 'http://121.5.130.175:9999',
         changeOrigin: true,
         pathRewrite: {
           '^/lovediary': ''

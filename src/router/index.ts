@@ -1,34 +1,27 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-const Login = () => import("../views/login/Login.vue");
-
-const Home = () => import("../views/Home.vue");
-const About = () => import("../views/About.vue");
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+const Login = () => import('../views/login/Login.vue'); // 登录页面
+const Layout = () => import('@/views/layout/Index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/",
-    redirect: "/login",
+    path: '/',
+    redirect: '/login'
   },
   {
-    path: "/login",
-    name: "Login",
-    component: Login,
+    path: '/login',
+    name: 'Login',
+    component: Login
   },
   {
-    path: "/home",
-    name: "Home",
-    component: Home,
-  },
-  {
-    path: "/about",
-    name: "About",
-    component: About,
-  },
+    path: '/index',
+    name: 'Layout',
+    component: Layout
+  }
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes,
+  routes
 });
 
 export default router;

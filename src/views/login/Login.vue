@@ -12,24 +12,14 @@
       </h3>
       <el-form :model="userInfo" :rules="rules" ref="formRef">
         <el-form-item label="账号：" prop="username">
-          <el-input
-            size="large"
-            type="text"
-            v-model="userInfo.username"
-          ></el-input>
+          <el-input size="large" type="text" v-model="userInfo.username"></el-input>
         </el-form-item>
         <el-form-item label="密码：" prop="password">
-          <el-input
-            size="large"
-            type="password"
-            v-model="userInfo.password"
-          ></el-input>
+          <el-input size="large" type="password" v-model="userInfo.password"></el-input>
         </el-form-item>
 
         <div class="btn">
-          <el-button type="primary" @click="submitForm(formRef)"
-            >登 录</el-button
-          >
+          <el-button type="primary" @click="submitForm(formRef)">登 录</el-button>
           <el-button type="success">注 册</el-button>
         </div>
       </el-form>
@@ -38,47 +28,50 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from "vue"
-import { useRouter } from "vue-router"
-import { login } from "@/api/login"
+import { reactive, ref } from 'vue';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+import { login } from '@/api/login';
 
-import { ElMessage } from "element-plus"
-import type { ElForm } from "element-plus"
+import { ElMessage } from 'element-plus';
+import type { ElForm } from 'element-plus';
 
-const formRef = ref<InstanceType<typeof ElForm>>()
+const router = useRouter(); // 初始化路由实例
+const state = useStore(); // 初始化vuex实例
 
-const router = useRouter() // 初始化路由实例
-
+// 登录信息
 const userInfo = reactive({
-  username: "姚成成",
-  password: "zwt123456",
-})
+  username: '姚成成',
+  password: 'zwt123456'
+});
+
+const formRef = ref<InstanceType<typeof ElForm>>();
 
 const rules = reactive({
-  username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
+  username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
   password: [
-    { required: true, message: "请输入密码", trigger: "blur" },
-    { min: 6, message: "密码长度最低6为", trigger: "blur" },
-  ],
-})
+    { required: true, message: '请输入密码', trigger: 'blur' },
+    { min: 6, message: '密码长度最低6位', trigger: 'blur' }
+  ]
+});
 
 let submitForm = (formEl: InstanceType<typeof ElForm> | undefined) => {
-  formEl?.validate((valid) => {
+  formEl?.validate(valid => {
     if (!valid) {
-      ElMessage.error("请正确填写用户信息")
-      return
+      ElMessage.error('请正确填写用户信息');
+      return;
     }
-    login(userInfo).then((res) => {
+    login(userInfo).then(res => {
       if (res.data.code !== 200) {
-        ElMessage.error(res.data.msg)
-        return
+        ElMessage.error(res.data.msg);
+        return;
       }
-      ElMessage.success(res.data.msg)
-      sessionStorage.setItem("userInfo", JSON.stringify(res.data.data[0]))
-      router.push("/home")
-    })
-  })
-}
+      state.commit('SET_USERINFO', res.data.data[0]);
+      ElMessage.success(res.data.msg);
+      router.push('/index');
+    });
+  });
+};
 </script>
 
 <style scoped lang="scss">
