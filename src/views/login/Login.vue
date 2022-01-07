@@ -19,7 +19,7 @@
         </el-form-item>
 
         <div class="btn">
-          <el-button type="primary" @click="submitForm(formRef)">登 录</el-button>
+          <el-button type="primary" @click="submitForm(formRef)" :loading="loading">登 录</el-button>
           <el-button type="success">注 册</el-button>
         </div>
       </el-form>
@@ -45,6 +45,8 @@ const userInfo = reactive({
   password: 'zwt123456'
 });
 
+let loading = ref<boolean>(false); // 懒加载登录按钮
+
 const formRef = ref<InstanceType<typeof ElForm>>();
 
 const rules = reactive({
@@ -61,7 +63,11 @@ let submitForm = (formEl: InstanceType<typeof ElForm> | undefined) => {
       ElMessage.error('请正确填写用户信息');
       return;
     }
+
+    loading.value = true;
+
     login(userInfo).then(res => {
+      loading.value = false;
       if (res.data.code !== 200) {
         ElMessage.error(res.data.msg);
         return;
@@ -92,12 +98,12 @@ let submitForm = (formEl: InstanceType<typeof ElForm> | undefined) => {
 
       &:nth-child(2n) {
         transform: rotate(15deg);
-        color: rgb(255, 120, 120);
+        color: $active-color;
       }
 
       &:nth-child(2n + 1) {
         transform: rotate(-15deg);
-        color: rgb(20, 255, 20);
+        color: $active-color;
       }
     }
   }

@@ -4,9 +4,12 @@ $font-size-base: 14px; // 文字默认大小
 $font-size-mid: $font-size-base+2;
 $font-size-large: $font-size-base+4;
 
+$active-color:rgb(183, 39, 255); // 选中文字颜色
+$bg-color:rgb(255, 204, 204); // 主题色
+
 // flex居中对齐
-@mixin flex-center {
+@mixin flex-center($justify-content:center, $align-items:center) {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: $justify-content;
+    align-items: $align-items;
 }

@@ -14,6 +14,9 @@ module.exports = {
     quotes: ['error', 'single'], // 单引号
     semi: ['error', 'always'], // 代码需要以分号结尾
 
-    '@typescript-eslint/no-explicit-any': ['off']
+    '@typescript-eslint/no-explicit-any': ['off'], // ts取消检测 any 类型
+    '@typescript-eslint/explicit-module-boundary-types': 'off', // ts取消检测函数返回值
+    '@typescript-eslint/no-non-null-assertion': 'off', // 允许非空断言
+    '@typescript-eslint/no-unused-vars': 'off' // is defind but never userd
   }
 };

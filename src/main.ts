@@ -1,17 +1,14 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
 
-import ElementPlus from "element-plus";
-import "element-plus/dist/index.css";
+import 'element-plus/dist/index.css'; // 引入element-plus样式
 
-import "./style/common.scss";
-console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+import './style/common.scss';
 const app = createApp(App); // 实例化vue
 
-app.use(ElementPlus); // 使用element-plus
 app.use(store); // 使用store
 app.use(router); // 使用router
 
-app.mount("#app");
+app.mount('#app');
