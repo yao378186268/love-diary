@@ -2,32 +2,74 @@
   <div class="menu">
     <div type="primary" @click="hideMenu" class="toggle-menu"><Fold v-show="!isCollapse" style="width: 1.5em; height: 1.5em" /><Expand v-show="isCollapse" style="width: 1.5em; height: 1.5em" /></div>
     <el-menu default-active="2" class="el-menu-vertical-demo" :collapse="isCollapse" background-color="$bg-color" active-text-color="rgb(183, 39, 255)">
-      <el-sub-menu index="1">
-        <template #title>
-          <el-icon><location /></el-icon>
-          <span>Navigator One</span>
-        </template>
+      <template v-for="item in data.menuList" :key="item['menu_id']">
+        <el-sub-menu v-if="hasChildren(item['children'])" :index="item['menu_id'] + ''">
+          <template #title>
+            <el-icon><User /></el-icon>
+            <span>{{ item['menu_name'] }}</span>
+          </template>
 
-        <el-sub-menu index="1-1">
-          <template #title><span>Group One</span></template>
-          <el-menu-item-group>
-            <el-menu-item index="1-1">item one</el-menu-item>
-            <el-menu-item index="1-2">item two</el-menu-item>
-          </el-menu-item-group>
+          <template v-for="ite in item['children']" :key="ite['menu_id']">
+            <el-sub-menu v-if="hasChildren(ite['children'])" :index="ite['menu_id'] + ''">
+              <template #title>
+                <el-icon><User /></el-icon>
+                <span>{{ ite['menu_name'] }}</span>
+              </template>
+              <el-menu-item-group>
+                <el-menu-item v-for="it in ite['children']" :key="it['menu_id']" :index="it['menu_id'] + ''">{{ it['menu_name'] }}</el-menu-item>
+              </el-menu-item-group>
+            </el-sub-menu>
+
+            <el-menu-item-group v-else>
+              <el-menu-item :index="ite['menu_id'] + ''">{{ ite['menu_name'] }}</el-menu-item>
+            </el-menu-item-group>
+          </template>
         </el-sub-menu>
-      </el-sub-menu>
+
+        <el-menu-item-group v-else>
+          <el-menu-item :index="item['menu_id'] + ''">{{ item['menu_name'] }}</el-menu-item>
+        </el-menu-item-group>
+      </template>
     </el-menu>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Location, Fold, Expand } from '@element-plus/icons-vue';
-import { ref } from 'vue';
+import { getMenu } from '@/api/index';
+import { Fold, Expand, User } from '@element-plus/icons-vue';
+import { ref, reactive, onMounted, computed } from 'vue';
 const isCollapse = ref(false);
+let data = reactive({
+  menuList: []
+});
 
 let hideMenu = () => {
   isCollapse.value = !isCollapse.value;
 };
+
+const hasChildren = computed(() => {
+  return (arr: { [key: string]: number | string }[]) => {
+    if (arr.length) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+});
+
+onMounted(() => {
+  getMenu({})
+    .then(res => {
+      console.log(res);
+      if (res.data.code !== 200) {
+        return;
+      }
+      data.menuList = res.data.data;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
 </script>
 
 <style scoped lang="scss">

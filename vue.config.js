@@ -44,11 +44,10 @@ module.exports = {
     open: true,
 
     proxy: {
-      '/lovediary': {
-        target: 'http://121.5.130.175:9999',
-        changeOrigin: true,
+      '/api': {
+        target: 'http://121.5.130.175:9999/lovediary',
         pathRewrite: {
-          '^/lovediary': ''
+          '^/api': ''
         }
       }
     }
