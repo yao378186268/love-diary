@@ -4,6 +4,11 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2020
   },
+  env: {
+    browser: true,
+    es6: true,
+    node: true
+  },
 
   extends: ['plugin:vue/vue3-essential', 'eslint:recommended', '@vue/typescript/recommended', '@vue/prettier', '@vue/prettier/@typescript-eslint'],
 
@@ -17,6 +22,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': ['off'], // ts取消检测 any 类型
     '@typescript-eslint/explicit-module-boundary-types': 'off', // ts取消检测函数返回值
     '@typescript-eslint/no-non-null-assertion': 'off', // 允许非空断言
-    '@typescript-eslint/no-unused-vars': 'off' // is defind but never userd
+    '@typescript-eslint/no-unused-vars': 'off', // is defind but never userd
+    '@typescript-eslint/no-var-requires': 'off'
   }
 };
