@@ -1,3 +1,6 @@
+import { MenuInter } from '@/interface/state';
+
 export const state = {
-  userInfo: {}
+  userInfo: {},
+  menu: Array<MenuInter>()
 };

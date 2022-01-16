@@ -16,12 +16,12 @@
                 <span>{{ ite['menu_name'] }}</span>
               </template>
               <el-menu-item-group>
-                <el-menu-item v-for="it in ite['children']" :key="it['menu_id']" :index="it['menu_id'] + ''">{{ it['menu_name'] }}</el-menu-item>
+                <el-menu-item v-for="it in ite['children']" :key="it['menu_id']" :index="it['menu_id'] + ''" @click="menuClick(it)">{{ it['menu_name'] }}</el-menu-item>
               </el-menu-item-group>
             </el-sub-menu>
 
             <el-menu-item-group v-else>
-              <el-menu-item :index="ite['menu_id'] + ''">{{ ite['menu_name'] }}</el-menu-item>
+              <el-menu-item :index="ite['menu_id'] + ''" @click="menuClick(ite)">{{ ite['menu_name'] }}</el-menu-item>
             </el-menu-item-group>
           </template>
         </el-sub-menu>
@@ -36,8 +36,13 @@
 
 <script setup lang="ts">
 import { getMenu } from '@/api/index';
+import { MenuInter } from '@/interface/state';
 import { Fold, Expand, User } from '@element-plus/icons-vue';
 import { ref, reactive, onMounted, computed } from 'vue';
+import { useStore } from 'vuex';
+
+const state = useStore();
+
 const isCollapse = ref(false);
 let data = reactive({
   menuList: []
@@ -57,10 +62,14 @@ const hasChildren = computed(() => {
   };
 });
 
+// 点击菜单调整页面
+let menuClick = (item: MenuInter) => {
+  state.commit('SET_MENU', item);
+};
+
 onMounted(() => {
   getMenu({})
     .then(res => {
-      console.log(res);
       if (res.data.code !== 200) {
         return;
       }

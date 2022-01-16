@@ -35,6 +35,7 @@ import { login } from '@/api/login';
 
 import { ElMessage } from 'element-plus';
 import type { ElForm } from 'element-plus';
+import { UserInfoInter } from '@/interface/state';
 
 const router = useRouter(); // 初始化路由实例
 const state = useStore(); // 初始化vuex实例
@@ -72,7 +73,8 @@ let submitForm = (formEl: InstanceType<typeof ElForm> | undefined) => {
         ElMessage.error(res.data.msg);
         return;
       }
-      state.commit('SET_USERINFO', res.data.data[0]);
+      let userInfo: UserInfoInter = res.data.data[0];
+      state.commit('SET_USERINFO', userInfo);
       ElMessage.success(res.data.msg);
       router.push('/index');
     });

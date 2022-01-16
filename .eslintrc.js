@@ -23,6 +23,8 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off', // ts取消检测函数返回值
     '@typescript-eslint/no-non-null-assertion': 'off', // 允许非空断言
     '@typescript-eslint/no-unused-vars': 'off', // is defind but never userd
-    '@typescript-eslint/no-var-requires': 'off'
+    '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-undef': 'off',
+    '@typescript-eslint/no-empty-function': 'off'
   }
 };
