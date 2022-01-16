@@ -7,10 +7,9 @@ function SET_USERINFO(state: any, userInfo: UserInfoInter): void {
 
 // 存入menu
 function SET_MENU(state: any, menu: MenuInter): void {
-  state.menu.forEach((item: MenuInter) => {
-    item['menu_type'] = '';
-  });
-  menu['menu_type'] = 'success';
+  if (menu['menu_name'] === '首页') {
+    return;
+  }
 
   if (!state.menu || !state.menu.length) {
     state.menu.push(menu);
@@ -19,8 +18,6 @@ function SET_MENU(state: any, menu: MenuInter): void {
   const index = state.menu.findIndex((item: MenuInter) => item.menu_id === menu.menu_id);
   if (index === -1) {
     state.menu.push(menu);
-  } else {
-    state.menu.splice(index, 1, menu);
   }
 }
 

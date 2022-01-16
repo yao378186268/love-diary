@@ -7,14 +7,29 @@
 <script setup lang="ts">
 import { MenuInter } from '@/interface/state';
 import { reactive } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, onBeforeRouteUpdate } from 'vue-router';
 import { useStore } from 'vuex';
 const state = useStore();
 const router = useRouter();
 
-const tagList = reactive([{ menu_name: '首页', menu_path: '/login' }, ...state.state.menu]);
+let tagList = reactive([{ menu_name: '首页', menu_path: '/index' }, ...state.state.menu]);
+
+onBeforeRouteUpdate(to => {
+  toggleTag(to.path);
+});
+
+const toggleTag = (path: string) => {
+  tagList.forEach(item => {
+    if (item['menu_path'] === path) {
+      item['menu_type'] = 'success';
+    } else {
+      item['menu_type'] = '';
+    }
+  });
+};
 
 const tagClick = (item: MenuInter) => {
+  toggleTag(item['menu_path']);
   state.commit('SET_MENU', item);
   router.push(item['menu_path']);
 };
@@ -22,7 +37,6 @@ const tagClick = (item: MenuInter) => {
 const tagClose = (item: MenuInter, index: number) => {
   tagList.splice(index, 1);
   state.commit('DELETE_MENU', item);
-  console.log(state.state);
 };
 </script>
 

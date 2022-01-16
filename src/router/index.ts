@@ -28,8 +28,6 @@ const routes: Array<RouteRecordRaw> = [
   }
 ];
 
-console.log(routes);
-
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes

@@ -39,9 +39,11 @@ import { getMenu } from '@/api/index';
 import { MenuInter } from '@/interface/state';
 import { Fold, Expand, User } from '@element-plus/icons-vue';
 import { ref, reactive, onMounted, computed } from 'vue';
+import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 
 const state = useStore();
+const router = useRouter();
 
 const isCollapse = ref(false);
 let data = reactive({
@@ -65,6 +67,7 @@ const hasChildren = computed(() => {
 // 点击菜单调整页面
 let menuClick = (item: MenuInter) => {
   state.commit('SET_MENU', item);
+  router.push(item['menu_path']);
 };
 
 onMounted(() => {
