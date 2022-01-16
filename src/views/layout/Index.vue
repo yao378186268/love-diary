@@ -5,6 +5,9 @@
       <MenuVue />
       <div class="main">
         <Nav></Nav>
+        <keep-alive>
+          <router-view />
+        </keep-alive>
       </div>
     </div>
   </div>

@@ -22,7 +22,7 @@ module.exports = {
 
   //所有资源使用相对路径
 
-  publicPath: './',
+  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
 
   //打包后资源存放的目录
 
