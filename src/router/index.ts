@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 const Login = () => import('@/views/login/Login.vue'); // 登录页面
 const Layout = () => import('@/views/layout/Index.vue');
 
-import { yccAndZwt } from './yccAndZwt';
+import { yccAndZwt } from './yccandzwt';
 
 const routes: Array<RouteRecordRaw> = [
   {

@@ -1,7 +1,7 @@
-const Ycc1 = () => import('@/views/yccAndZwt/ycc/ycc1/index.vue');
-const Ycc2 = () => import('@/views/yccAndZwt/ycc/ycc2/index.vue');
-const Zwt1 = () => import('@/views/yccAndZwt/zwt/zwt1/index.vue');
-const Zwt2 = () => import('@/views/yccAndZwt/zwt/zwt2/index.vue');
+const Ycc1 = () => import('../views/yccAndZwt/ycc/ycc1/index.vue');
+const Ycc2 = () => import('../views/yccAndZwt/ycc/ycc2/index.vue');
+const Zwt1 = () => import('../views/yccAndZwt/zwt/zwt1/index.vue');
+const Zwt2 = () => import('../views/yccAndZwt/zwt/zwt2/index.vue');
 
 export const yccAndZwt = [
   {
