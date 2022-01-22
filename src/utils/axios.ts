@@ -17,7 +17,6 @@ service.interceptors.request.use(config => {
 });
 
 service.interceptors.response.use(res => {
-  console.log(res);
   if (res.data.code !== 200) {
     ElMessageBox.alert(res.data.msg, '温馨提示：', {
       confirmButtonText: 'OK',
