@@ -82,7 +82,7 @@ const logout = () => {
       console.log(state.state, 1111);
       ElMessage({
         type: 'success',
-        message: '退出登陆'
+        message: '退出登录'
       });
     })
     .catch(() => {

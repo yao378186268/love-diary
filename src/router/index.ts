@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import { getToken } from '@/utils/getToken';
+import { ElMessage } from 'element-plus';
 
 const Login = () => import('@/views/login/Login.vue'); // 登录页面
 const Layout = () => import('@/views/layout/Index.vue'); // 布局页面
@@ -55,6 +56,7 @@ router.beforeEach((to, form, next) => {
     return next();
   }
   if (!getToken()) {
+    ElMessage.error('请先登录！');
     return router.push('/login');
   }
   next();
