@@ -1,25 +1,29 @@
 <template>
   <div class="nav">
-    <el-tag :closable="index !== 0" v-for="(item, index) in tagList" :key="index" :type="item['menu_type']" @click="tagClick(item)" @close="tagClose(item, index)">{{ item['menu_name'] }}</el-tag>
+    <el-tag :closable="index !== 0" v-for="(item, index) in data.tagList" :key="index" :type="item['menu_type']" @click="tagClick(item)" @close="tagClose(item, index)">{{ item['menu_name'] }}</el-tag>
   </div>
 </template>
 
 <script setup lang="ts">
 import { MenuInter } from '@/interface/state';
-import { reactive } from 'vue';
+import { reactive, watch } from 'vue';
 import { useRouter, onBeforeRouteUpdate } from 'vue-router';
 import { useStore } from 'vuex';
 const state = useStore();
 const router = useRouter();
 
-let tagList = reactive([{ menu_name: '首页', menu_path: '/index' }, ...state.state.menu]);
+let data = reactive({ tagList: [{ menu_name: '首页', menu_path: '/index' }, ...state.state.menu] });
 
 onBeforeRouteUpdate(to => {
   toggleTag(to.path);
 });
 
+watch(state.state.menu, (newState: MenuInter[]) => {
+  data.tagList = [{ menu_name: '首页', menu_path: '/index' }, ...newState];
+});
+
 const toggleTag = (path: string) => {
-  tagList.forEach(item => {
+  data.tagList.forEach(item => {
     if (item['menu_path'] === path) {
       item['menu_type'] = 'success';
     } else {
@@ -35,7 +39,7 @@ const tagClick = (item: MenuInter) => {
 };
 
 const tagClose = (item: MenuInter, index: number) => {
-  tagList.splice(index, 1);
+  data.tagList.splice(index, 1);
   state.commit('DELETE_MENU', item);
 };
 </script>

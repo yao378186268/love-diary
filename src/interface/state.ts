@@ -2,11 +2,11 @@
 
 // 菜单对象接口
 interface MenuInter {
-  children: MenuInter;
+  children?: MenuInter;
   menu_id: number;
-  menu_level: string;
+  menu_level?: string;
   menu_name: string;
-  menu_parent_id: number;
+  menu_parent_id?: number;
   menu_path: string;
   menu_type: string | null;
 }

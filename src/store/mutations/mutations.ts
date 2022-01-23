@@ -1,4 +1,5 @@
 import { MenuInter, UserInfoInter } from '@/interface/state';
+import { state as defaultState } from '../state/state';
 
 // 存入userInfo
 function SET_USERINFO(state: any, userInfo: UserInfoInter): void {
@@ -29,4 +30,9 @@ function DELETE_MENU(state: any, menu: MenuInter): void {
   }
 }
 
-export default { SET_USERINFO, SET_MENU, DELETE_MENU };
+// logout清空vuex
+function CLEARLOGOUT(state: any) {
+  Object.assign(state, defaultState);
+}
+
+export default { SET_USERINFO, SET_MENU, DELETE_MENU, CLEARLOGOUT };
