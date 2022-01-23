@@ -6,6 +6,11 @@ function SET_USERINFO(state: any, userInfo: UserInfoInter): void {
   state.userInfo = JSON.parse(JSON.stringify(userInfo));
 }
 
+// 存入token
+function SET_TOKEN(state: any, token: string): void {
+  state.token = token;
+}
+
 // 存入menu
 function SET_MENU(state: any, menu: MenuInter): void {
   if (menu['menu_name'] === '首页') {
@@ -35,4 +40,4 @@ function CLEARLOGOUT(state: any) {
   Object.assign(state, defaultState);
 }
 
-export default { SET_USERINFO, SET_MENU, DELETE_MENU, CLEARLOGOUT };
+export default { SET_USERINFO, SET_MENU, DELETE_MENU, CLEARLOGOUT, SET_TOKEN };

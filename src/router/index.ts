@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { getToken } from '@/utils/getToken';
+
 const Login = () => import('@/views/login/Login.vue'); // 登录页面
 const Layout = () => import('@/views/layout/Index.vue'); // 布局页面
 const Home = () => import('@/views/layout/Home.vue');
@@ -46,6 +48,16 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+});
+
+router.beforeEach((to, form, next) => {
+  if (to.path === '/login') {
+    return next();
+  }
+  if (!getToken()) {
+    return router.push('/login');
+  }
+  next();
 });
 
 export default router;

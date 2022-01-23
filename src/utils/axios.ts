@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import type { Action } from 'element-plus';
+import { getToken } from './getToken';
 
 const service = axios.create({
   timeout: 10000
@@ -13,6 +14,9 @@ service.interceptors.request.use(config => {
   //   const url = window.location.origin + ':9999';
   //   config.url = url + config.url;
   // }
+  // 设置请求头token
+  config.headers!.authorization = 'Bearer ' + getToken();
+
   return config;
 });
 

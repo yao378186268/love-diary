@@ -5,9 +5,9 @@ import store from './store';
 
 import 'element-plus/dist/index.css'; // 引入element-plus样式
 
-// import './utils/useAES.js'; // 测试AES加密
+// import './utils/AES/useAES.js'; // 测试AES加密
 
-// import './utils/useRSA.js'; // 测试RSA加密
+// import './utils/AES/useRSA.js'; // 测试RSA加密
 
 import './style/common.scss';
 const app = createApp(App); // 实例化vue

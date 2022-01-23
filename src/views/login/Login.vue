@@ -75,6 +75,7 @@ let submitForm = (formEl: InstanceType<typeof ElForm> | undefined) => {
       }
       let userInfo: UserInfoInter = res.data.data[0];
       state.commit('SET_USERINFO', userInfo);
+      state.commit('SET_TOKEN', res.data.token);
       ElMessage.success(res.data.msg);
       router.push('/index');
     });
