@@ -79,7 +79,6 @@ const logout = () => {
       sessionStorage.clear();
       router.push('/login');
       state.commit('CLEARLOGOUT');
-      console.log(state.state, 1111);
       ElMessage({
         type: 'success',
         message: '退出登录'

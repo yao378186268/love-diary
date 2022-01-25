@@ -15,7 +15,9 @@ service.interceptors.request.use(config => {
   //   config.url = url + config.url;
   // }
   // 设置请求头token
-  config.headers!.authorization = 'Bearer ' + getToken();
+  if (config.url !== 'api/login') {
+    config.headers!.authorization = 'Bearer ' + getToken();
+  }
 
   return config;
 });
