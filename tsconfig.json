@@ -14,10 +14,11 @@
     "baseUrl": ".",
     "types": ["webpack-env", "element-plus/global"],
     "paths": {
-      "@/*": ["src/*"]
+      "*": ["./node_modules/@types/"],
+      "@/*": ["src/*", "./node_modules/@types/"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.tsx", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": []
 }

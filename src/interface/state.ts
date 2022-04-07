@@ -1,3 +1,13 @@
+/*
+ * @Author: 姚成成
+ * @Date: 2022-01-16 13:29:43
+ * @LastEditors: 姚成成
+ * @LastEditTime: 2022-04-07 12:03:13
+ * @FilePath: /love-diary-client/src/interface/state.ts
+ * @Description:
+ *
+ * Copyright (c) 2022 by 用户/公司名, All Rights Reserved.
+ */
 // vuex中使用的接口
 
 // 菜单对象接口
@@ -22,4 +32,11 @@ interface UserInfoInter {
   username: string;
 }
 
-export { MenuInter, UserInfoInter };
+// 展示图片
+interface ImgInter {
+  author: string;
+  url: string;
+  id: string;
+}
+
+export { MenuInter, UserInfoInter, ImgInter };
