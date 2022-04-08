@@ -30,5 +30,10 @@ onMounted(() => {});
 .img-card {
   box-sizing: border-box;
   padding: 8px 8px 0;
+  transition: all 0.2s linear;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 </style>

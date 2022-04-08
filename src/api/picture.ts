@@ -14,3 +14,7 @@ import global from '../global/global';
 export async function getPicture(params: { author: string }) {
   return await http.get(global.defaultPath + '/picture', params);
 }
+
+export async function getVideo(params: any) {
+  return await http.get(global.defaultPath + '/video', params);
+}
